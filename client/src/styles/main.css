@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Assistant:800|Montserrat&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Ubuntu|Open+Sans&display=swap");
 body {
   margin: 0;
   padding: 0;
@@ -6,154 +6,303 @@ body {
 
 .App {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(5, 1fr);
-  grid-column-gap: 0px;
-  grid-row-gap: 0px;
-  height: 100vh; }
+  grid-template-columns: repeat(20, 1fr);
+  grid-template-rows: repeat(20, 1fr);
+  height: 100vh;
+  min-height: 900px;
+  width: 1400px; }
   .App .sidebar {
     display: grid;
-    max-width: 340px;
-    grid-area: 1 / 1 / 6 / 2;
+    grid-area: 1 / 1 / 21 / 3;
     grid-template-columns: 1fr;
     grid-template-rows: repeat(5, 1fr);
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
-    box-shadow: -4px 5px 11px 2px black; }
+    font-family: 'Ubuntu', sans-serif; }
     .App .sidebar .status-box {
       grid-area: 1/1/3/2;
+      font-size: 0.8rem;
       display: flex;
+      width: 300px;
       flex-direction: column;
       box-shadow: -4px -3px 6px 4px black;
       background: #202020;
-      color: white; }
+      color: white;
+      height: 300px; }
       .App .sidebar .status-box .status-box-image {
         display: flex;
         flex: 50%;
         align-items: center;
         justify-content: center; }
       .App .sidebar .status-box img {
-        height: 200px; }
+        height: 140px; }
       .App .sidebar .status-box .status-box-address {
         flex: 5%;
         text-align: center;
-        font-family: 'Courier New', Courier, monospace;
-        font-size: 0.8rem; }
+        font-size: 0.65rem; }
       .App .sidebar .status-box .status-box-text {
         flex: 20%;
         padding: 0 20px; }
         .App .sidebar .status-box .status-box-text .status-box-text-item {
           display: grid;
-          grid-template-columns: repeat(6, 1fr); }
+          grid-template-columns: repeat(6, 1fr);
+          font-family: 'Assistant', sans-serif; }
           .App .sidebar .status-box .status-box-text .status-box-text-item .property {
             grid-area: 1 / 1 / 2 / 3;
-            font-family: 'Montserrat', sans-serif;
             font-weight: 600;
             text-transform: uppercase; }
           .App .sidebar .status-box .status-box-text .status-box-text-item .property-desc {
             grid-area: 1 / 3 / 2 / 7; }
     .App .sidebar .menu-box {
-      grid-area: 3/1/7/2;
+      grid-area: 3/1/10/3;
       display: flex;
+      margin-top: -60px;
+      padding-bottom: 60px;
+      height: 100%;
       flex-direction: column;
-      background-color: #404040;
-      justify-content: space-around; }
+      background: #292929;
+      font-weight: bold;
+      font-family: 'Open Sans', arial, sans-serif; }
       .App .sidebar .menu-box .menu-box-item {
-        color: black;
-        padding: 0 20px;
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-        font-family: 'Assistant', sans-serif;
-        font-size: 2rem;
-        height: 18%;
+        color: #fff;
         text-transform: uppercase;
-        background: white; }
+        text-decoration: none;
+        letter-spacing: 0.15em;
+        display: inline-block;
+        padding: 15px 20px;
+        position: relative;
+        transform-origin: center; }
+      .App .sidebar .menu-box .menu-box-item:after {
+        background: none repeat scroll 0 0 transparent;
+        bottom: 0;
+        content: '';
+        display: block;
+        height: 2px;
+        left: 50%;
+        position: absolute;
+        background: rgba(0, 0, 0, 0.2);
+        transition: width 0.3s ease 0s, left 0.3s ease 0s;
+        width: 0; }
+      .App .sidebar .menu-box .menu-box-item:hover:after {
+        width: 100%;
+        height: 100%;
+        left: 0; }
       .App .sidebar .menu-box .menu-box-item:hover {
-        height: 23%;
-        font-size: 2.5rem;
-        transition: all 0.2s cubic-bezier(0.04, 0.9, 0.12, 0.95); }
+        color: goldenrod;
+        cursor: pointer; }
   .App .navbar {
-    grid-area: 1 / 2 / 2 / 6;
-    padding: 60px;
+    grid-area: 2 / 6 / 4 / 19;
     display: grid;
     grid-template-columns: repeat(8, 1fr);
-    grid-column-gap: 0px; }
+    font-family: 'Ubuntu', sans-serif; }
     .App .navbar .navbar-welcome {
       grid-area: 1 / 1 / 3 / 2; }
     .App .navbar .navbar-title {
       font-size: 4rem;
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 800; }
+      font-weight: 800;
+      text-transform: uppercase; }
     .App .navbar .navbar-subtitle {
       font-size: 1.5rem;
-      font-family: 'Montserrat', sans-serif;
       margin-left: 5px; }
     .App .navbar .navbar-logout {
       font-size: 2rem;
       grid-area: 1 / 7 / 3 / 9;
-      text-transform: uppercase;
-      font-family: 'Montserrat', sans-serif; }
+      text-transform: uppercase; }
   .App .panel {
-    display: grid;
-    position: relative;
-    grid-area: 2 / 2 / 6 / 6;
-    grid-template-columns: repeat(8, 1fr);
-    grid-column-gap: 50px;
-    padding: 70px; }
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    grid-area: 6 / 6 / 20 / 19;
+    font-family: 'Ubuntu', sans-serif;
+    width: 100%;
+    height: 100%;
+    position: relative; }
     .App .panel .card img {
-      height: 150px; }
+      height: 115px; }
+    .App .panel .cards {
+      display: flex; }
+    .App .panel .hubs {
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: column;
+      height: 50%;
+      width: 59%; }
+    .App .panel .hub {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 300px;
+      margin: 0 10px 10px 0;
+      height: 70px;
+      box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.2);
+      transition: 0.3s;
+      background-color: #f0f0f0; }
+    .App .panel .hub-image img {
+      height: 50px; }
+    .App .panel .hub-connection {
+      width: 20px;
+      height: 20px;
+      border-radius: 10px;
+      background: yellowgreen; }
+    .App .panel .hub-info .hub-info-item {
+      display: grid;
+      font-size: 0.6rem;
+      grid-template-columns: repeat(20, 1fr); }
+      .App .panel .hub-info .hub-info-item .property {
+        text-transform: uppercase;
+        font-weight: 800;
+        grid-area: 1 / 2 / 2 / 9; }
+      .App .panel .hub-info .hub-info-item .property-info {
+        grid-area: 1 / 10 / 2 / 21; }
     .App .panel .card {
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      width: 250px;
-      height: 300px;
-      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-      border-radius: 5px;
+      margin-right: 15px;
+      min-width: 200px;
+      height: 250px;
+      box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.2);
       transition: 0.3s;
       background-color: #f0f0f0; }
+      .App .panel .card .min-content {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        border-radius: 5px; }
       .App .panel .card .card-image {
-        flex: 70%;
+        flex: 60%;
         display: flex;
         align-items: center;
         justify-content: center;
         width: 100%;
         border-radius: 5px; }
       .App .panel .card .card-info {
-        flex: 20%;
-        padding: 5px;
-        width: 100%;
-        padding: 10px 10px 10px 50px;
-        display: flex;
-        flex-direction: column;
-        font-family: 'Montserrat', sans-serif;
-        text-transform: uppercase;
-        transform-origin: center; }
+        flex: 20% 1;
+        font-family: 'Ubuntu', sans-serif;
+        font-size: 0.8rem; }
+        .App .panel .card .card-info .card-info-item {
+          display: grid;
+          grid-template-columns: repeat(20, 1fr); }
+          .App .panel .card .card-info .card-info-item .property {
+            grid-area: 1 / 2 / 2 / 9;
+            font-weight: 600;
+            text-transform: uppercase; }
+          .App .panel .card .card-info .card-info-item .property-desc {
+            grid-area: 1 / 10 / 2 / 21; }
     .App .panel .card-full {
       position: absolute;
-      height: 90%;
-      width: 90%;
+      font-family: 'Open Sans', sans-serif;
       transform-origin: center;
       background: floralwhite;
+      width: 1040px;
       transition: all 0.2s cubic-bezier(0.04, 0.9, 0.12, 0.95);
       box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset; }
-    .App .panel .full-content {
-      display: grid;
-      grid-template-columns: repeat(40, 1fr);
-      grid-template-rows: repeat(30, 1fr); }
-      .App .panel .full-content .button-leave {
-        grid-area: 2 / 37 / 5 / 41;
-        width: 100%;
-        background: black;
-        height: 100%; }
+      .App .panel .card-full .full-content {
+        display: grid;
+        background: whitesmoke;
+        grid-template-columns: repeat(40, 1fr);
+        grid-template-rows: repeat(30, 1fr);
+        max-height: 550px; }
+        .App .panel .card-full .full-content .close-button {
+          grid-area: 2 / 40 / 6 / 38;
+          width: 50px;
+          height: 50px; }
+        .App .panel .card-full .full-content .pie-chart {
+          grid-area: 1 / 12 / 13 / 29; }
+        .App .panel .card-full .full-content .xy-chart {
+          grid-area: 7 / 5 / 13 / 37; }
+        .App .panel .card-full .full-content .full-stats .fs-title {
+          font-size: 1.5rem;
+          font-weight: 800;
+          text-transform: uppercase; }
+        .App .panel .card-full .full-content .full-stats .delivery {
+          color: #555; }
+        .App .panel .card-full .full-content .full-stats .supply {
+          color: #222; }
+        .App .panel .card-full .full-content .full-stats .fs-price {
+          display: flex;
+          font-weight: 800;
+          font-size: 2rem; }
+          .App .panel .card-full .full-content .full-stats .fs-price .currency {
+            transform: translateY(-4px);
+            font-size: 2rem; }
+        .App .panel .card-full .full-content .full-stats .fs-details {
+          margin: 10px 0;
+          font-size: 0.8rem; }
+        .App .panel .card-full .full-content .full-stats .fs-red {
+          color: firebrick; }
+        .App .panel .card-full .full-content .full-stats .fs-subdetails {
+          font-weight: 800; }
+        .App .panel .card-full .full-content .left {
+          grid-area: 3 / 31 / 12 / 37; }
+        .App .panel .card-full .full-content .right {
+          grid-area: 3 / 4 / 12 / 11; }
+        .App .panel .card-full .full-content .bottom-right {
+          grid-area: 21 / 4 / 27 / 16; }
+        .App .panel .card-full .full-content .total-charge {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          text-transform: uppercase;
+          font-weight: 800;
+          color: black;
+          grid-area: 13/20/25/30;
+          width: 26px;
+          height: 0px; }
+        .App .panel .card-full .full-content .total-charge-price {
+          font-size: 2rem; }
+        .App .panel .card-full .full-content .storage {
+          width: 200px; }
+          .App .panel .card-full .full-content .storage .storage-info {
+            display: flex;
+            align-items: center;
+            justify-content: space-between; }
+            .App .panel .card-full .full-content .storage .storage-info .battery-info {
+              font-size: 2rem;
+              font-weight: 800;
+              color: mediumseagreen; }
+          .App .panel .card-full .full-content .storage .bold {
+            font-weight: 800;
+            font-size: 1.4rem; }
+          .App .panel .card-full .full-content .storage .storage-info img {
+            width: 100px;
+            transform: rotate(90deg);
+            margin: -23px 0; }
+        .App .panel .card-full .full-content .title-add {
+          grid-area: 6/10/9/31;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-weight: bold;
+          font-size: 3rem;
+          text-transform: uppercase;
+          background: #191919;
+          color: white; }
+        .App .panel .card-full .full-content .panels-add {
+          display: flex;
+          grid-area: 11/7/27/35;
+          align-items: center;
+          justify-content: space-around; }
+          .App .panel .card-full .full-content .panels-add .panel-add {
+            height: 80%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 30%;
+            background: whitesmoke;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); }
+          .App .panel .card-full .full-content .panels-add .panel-add:hover {
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2); }
+          .App .panel .card-full .full-content .panels-add .panel-add img {
+            height: 150px; }
     .App .panel .card-full:before,
     .App .panel .card-full:after {
       content: '';
       position: absolute;
       z-index: -1;
-      -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
       -moz-box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
       box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
       bottom: 0;
@@ -163,5 +312,48 @@ body {
       border-radius: 100px / 10px; }
     .App .panel .card:hover {
       box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2); }
+
+.loader {
+  position: relative;
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
+  grid-gap: 2px;
+  width: 100px;
+  height: 100px; }
+
+.loader > div {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: tomato;
+  transform: scale(0);
+  transform-origin: center center;
+  animation: loader 2s infinite linear; }
+
+.loader > div:nth-of-type(1),
+.loader > div:nth-of-type(5),
+.loader > div:nth-of-type(9) {
+  animation-delay: 0.4s; }
+
+.loader > div:nth-of-type(4),
+.loader > div:nth-of-type(8) {
+  animation-delay: 0.2s; }
+
+.loader > div:nth-of-type(2),
+.loader > div:nth-of-type(6) {
+  animation-delay: 0.6s; }
+
+.loader > div:nth-of-type(3) {
+  animation-delay: 0.8s; }
+
+@keyframes loader {
+  0% {
+    transform: scale(0); }
+  40% {
+    transform: scale(1); }
+  80% {
+    transform: scale(1); }
+  100% {
+    transform: scale(0); } }
 
 /*# sourceMappingURL=main.css.map */
