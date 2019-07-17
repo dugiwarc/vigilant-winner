@@ -1,4 +1,4 @@
-export const TODO_LIST_ADDRESS = "0x3384A834f46973329d889537ea0984DA87aFE4f9";
+export const TODO_LIST_ADDRESS = "0x766DcBA0A4863bcE023118Dc0f88BE048A73574F";
 
 export const TODO_LIST_ABI = [
   {
@@ -9,106 +9,20 @@ export const TODO_LIST_ABI = [
         type: "string"
       }
     ],
-    name: "createTask",
+    name: "addTransaction",
     outputs: [],
     payable: false,
     stateMutability: "nonpayable",
     type: "function"
   },
   {
-    constant: false,
-    inputs: [
-      {
-        name: "_id",
-        type: "uint256"
-      }
-    ],
-    name: "toggleCompleted",
-    outputs: [],
-    payable: false,
-    stateMutability: "nonpayable",
-    type: "function"
-  },
-  {
-    inputs: [],
-    payable: false,
-    stateMutability: "nonpayable",
-    type: "constructor"
-  },
-  {
-    anonymous: false,
-    inputs: [
-      {
-        indexed: false,
-        name: "id",
-        type: "uint256"
-      },
-      {
-        indexed: false,
-        name: "content",
-        type: "string"
-      },
-      {
-        indexed: false,
-        name: "completed",
-        type: "bool"
-      }
-    ],
-    name: "TaskCreated",
-    type: "event"
-  },
-  {
-    anonymous: false,
-    inputs: [
-      {
-        indexed: false,
-        name: "id",
-        type: "uint256"
-      },
-      {
-        indexed: false,
-        name: "completed",
-        type: "bool"
-      }
-    ],
-    name: "TaskCompleted",
-    type: "event"
-  },
-  {
     constant: true,
     inputs: [],
-    name: "taskCount",
+    name: "content",
     outputs: [
       {
         name: "",
-        type: "uint256"
-      }
-    ],
-    payable: false,
-    stateMutability: "view",
-    type: "function"
-  },
-  {
-    constant: true,
-    inputs: [
-      {
-        name: "",
-        type: "uint256"
-      }
-    ],
-    name: "tasks",
-    outputs: [
-      {
-        name: "id",
-        type: "uint256"
-      },
-      {
-        name: "content",
         type: "string"
-      },
-      {
-        name: "completed",
-        type: "bool"
       }
     ],
     payable: false,

@@ -1,12 +1,15 @@
-import React, { Component } from 'react';
-import MenuBox from './MenuBox';
-import StatusBox from './StatusBox';
+import React, { Component } from "react";
+import MenuBox from "./MenuBox";
+import StatusBox from "./StatusBox";
 export default class Sidebar extends Component {
   render() {
     return (
-      <div className='sidebar'>
+      <div className="sidebar">
         <StatusBox />
-        <MenuBox makeTransaction={this.props.makeTransaction} />
+        <MenuBox
+          makeTransaction={this.props.makeTransaction}
+          transactions={this.props.transactions}
+        />
       </div>
     );
   }
