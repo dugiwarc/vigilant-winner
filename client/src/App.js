@@ -1,65 +1,120 @@
-import React, { Component } from 'react';
-import SimpleStorageContract from './contracts/SimpleStorage.json';
-import getWeb3 from './utils/getWeb3';
-import Sidebar from './Sidebar';
-import Navbar from './Navbar';
-import Panel from './Panel';
+import React, { Component } from "react";
+import SimpleStorageContract from "./contracts/SimpleStorage.json";
+import getWeb3 from "./utils/getWeb3";
+import Sidebar from "./Sidebar";
+import Web3 from "web3";
 
-import './styles/main.css';
+import Navbar from "./Navbar";
+import Panel from "./Panel";
+
+import { TODO_LIST_ABI, TODO_LIST_ADDRESS } from "./config";
+import { connect } from "react-redux";
+import store from "./store";
+import { getTransactions, addTransaction } from "./actions/actions";
+
+import "./styles/main.css";
 
 class App extends Component {
   state = {
     storageValue: 0,
     web3: null,
-    accounts: null,
+    accounts: "",
+    taskCount: 0,
+    tasks: [],
     contract: null,
-    displayFullCard: false
+    displayFullCard: false,
+    accountBalance: 0,
+    transactions: []
   };
 
-  componentDidMount = async () => {
+  componentWillMount = async () => {
+    this.loadBlockChainData();
+  };
+
+  async loadBlockChainData() {
     try {
-      // Get network provider and web3 instance.
-      const web3 = await getWeb3();
-
-      // Use web3 to get the user's accounts.
+      const web3 = new Web3(Web3.givenProvider);
       const accounts = await web3.eth.getAccounts();
-
-      // Get the contract instance.
-      const networkId = await web3.eth.net.getId();
-      const deployedNetwork = SimpleStorageContract.networks[networkId];
-      const instance = new web3.eth.Contract(
-        SimpleStorageContract.abi,
-        deployedNetwork && deployedNetwork.address
-      );
-
-      // Set web3, accounts, and contract to the state, and then proceed with an
-      // example of interacting with the contract's methods.
-      this.setState({ web3, accounts, contract: instance }, this.runExample);
+      const contract = new web3.eth.Contract(TODO_LIST_ABI, TODO_LIST_ADDRESS);
+      const taskCount = await contract.methods.taskCount().call();
+      for (var i = 1; i <= taskCount; i++) {
+        const task = await contract.methods.tasks(i).call();
+        this.setState({
+          tasks: [...this.state.tasks, task]
+        });
+      }
+      console.log(this.state.tasks);
+      this.setState({
+        account: accounts[0],
+        contract,
+        taskCount,
+        loading: false,
+        web3
+      });
     } catch (error) {
-      // Catch any errors for any of the above operations.
-      alert(
-        `Failed to load web3, accounts, or contract. Check console for details.`
-      );
-      console.error(error);
+      console.log(error);
     }
+  }
+
+  createTask = content => {
+    this.setState({ loading: true });
+    this.state.contract.methods
+      .createTask(content)
+      .send({ from: this.state.account })
+      .once("receipt", receipt => {
+        this.setState({ loading: false });
+      });
   };
 
-  runExample = async () => {
-    console.log('runExample');
-    // const { accounts, contract } = this.state;
+  makeTransaction = async () => {
+    const { accounts, contract, transactions } = this.state;
+    this.createTask("Homeless");
+    // const parsedTransactions = JSON.stringify(transactions);
+    // console.log(parsedTransactions);
+    // contract.methods
+    //   .set("2fefwegwegwegewg")
+    //   .send({ from: accounts[0] })
+    //   .on("error", error => {
+    //     console.log("error", error);
+    //   })
+    //   .on("transactionHash", transactionHash => {
+    //     console.log("transactionHash", transactionHash);
+    //   })
+    //   .on("receipt", receipt => {
+    //     console.log(receipt.contractAddress);
+    //   })
+    //   .on("confirmation", (confirmationNumber, receipt) => {
+    //     // console.log(confirmationNumber, receipt);
+    //     console.log("Added", receipt.transactionHash);
+    //     this.props.addTransaction(receipt.transactionHash);
+    //     this.setState(
+    //       {
+    //         transactions: [...this.state.transactions, receipt.transactionHash]
+    //       },
+    //       () => console.log("Current State: ", this.state.transactions)
+    //     );
+    //   })
+    //   .then(newContractInstance => {
+    //     console.log(
+    //       "newContractInstance.options.address",
+    //       newContractInstance.options.address
+    //     );
+    //   });
 
-    // // Stores a given value, 5 by default.
-    // contract.methods.set(5).send({ from: accounts[0] });
-
-    // // Get the value from the contract to prove it worked.
+    // contract.methods.set("5").send({ from: accounts[0] });
     // const response = await contract.methods.get().call();
+    // console.log("response", response);
 
-    // // Update state with the result.
-    // this.setState({
-    //   storageValue: this.state.web3.utils.hexToNumber(
-    //     this.state.web3.utils.toHex(response)
-    //   )
-    // });
+    // this.setState(
+    //   {
+    //     storageValue: this.state.web3.utils.hexToNumber(
+    //       this.state.web3.utils.toHex(response)
+    //     )
+    //   },
+    //   () => {
+    //     console.log(this.state.storageValue);
+    //   }
+    // );
   };
 
   render() {
@@ -67,8 +122,8 @@ class App extends Component {
       return <div>Loading Web3, accounts, and contract...</div>;
     }
     return (
-      <div className='App'>
-        <Sidebar />
+      <div className="App">
+        <Sidebar makeTransaction={this.makeTransaction} />
         <Navbar />
         <Panel />
       </div>
@@ -76,4 +131,11 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = state => {
+  return { state };
+};
+
+export default connect(
+  mapStateToProps,
+  { getTransactions, addTransaction }
+)(App);

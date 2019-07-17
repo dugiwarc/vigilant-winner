@@ -6,7 +6,7 @@ export default class Sidebar extends Component {
     return (
       <div className='sidebar'>
         <StatusBox />
-        <MenuBox />
+        <MenuBox makeTransaction={this.props.makeTransaction} />
       </div>
     );
   }

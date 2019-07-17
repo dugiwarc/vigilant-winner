@@ -4,7 +4,7 @@ import battery from './graphics/battery.png';
 
 export default class FullStats extends Component {
   render() {
-    const { title, buyer, price, currency, type } = this.props;
+    const { title, buyer, price, currency } = this.props;
     return (
       <div
         className={`full-stats ${

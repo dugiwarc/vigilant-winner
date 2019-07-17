@@ -1,9 +1,8 @@
-import React, { PureComponent, Component } from 'react';
+import React, { Component } from 'react';
 import drop from './graphics/drop.png';
 import add from './graphics/add.png';
 import close from './graphics/close.png';
 import charge from './graphics/lightning.png';
-import Pie from './Pie';
 import Chart from './Chart';
 import FullStats from './FullStats';
 import TotalChart from './TotalChart';

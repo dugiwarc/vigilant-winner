@@ -1,5 +1,4 @@
 import React from 'react';
-import * as V from 'victory';
 import PropTypes from 'prop-types';
 import { VictoryLabel, VictoryTooltip, VictoryPie } from 'victory';
 
