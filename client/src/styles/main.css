@@ -1,4 +1,19 @@
 @import url("https://fonts.googleapis.com/css?family=Ubuntu|Open+Sans&display=swap");
+html {
+  overflow: scroll;
+  overflow-x: hidden;
+  overflow-y: hidden; }
+
+::-webkit-scrollbar {
+  width: 0px;
+  /* Remove scrollbar space */
+  background: transparent;
+  /* Optional: just make scrollbar invisible */ }
+
+/* Optional: show position indicator in red */
+::-webkit-scrollbar-thumb {
+  background: #ff0000; }
+
 body {
   margin: 0;
   padding: 0;
@@ -13,20 +28,19 @@ body {
   width: 1400px; }
   .App .sidebar {
     display: grid;
-    grid-area: 1 / 1 / 21 / 3;
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(5, 1fr);
-    font-family: 'Ubuntu', sans-serif; }
+    grid-area: 1 / 1 / 21 / 5;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(20, 1fr);
+    font-family: "Ubuntu", sans-serif; }
     .App .sidebar .status-box {
-      grid-area: 1/1/3/2;
+      grid-area: 1 / 1 / 8 / 5;
       font-size: 0.8rem;
       display: flex;
-      width: 300px;
+      box-shadow: -4px -4px 4px 5px black;
       flex-direction: column;
-      box-shadow: -4px -3px 6px 4px black;
       background: #202020;
-      color: white;
-      height: 300px; }
+      z-index: 5;
+      color: white; }
       .App .sidebar .status-box .status-box-image {
         display: flex;
         flex: 50%;
@@ -44,7 +58,7 @@ body {
         .App .sidebar .status-box .status-box-text .status-box-text-item {
           display: grid;
           grid-template-columns: repeat(6, 1fr);
-          font-family: 'Assistant', sans-serif; }
+          font-family: "Assistant", sans-serif; }
           .App .sidebar .status-box .status-box-text .status-box-text-item .property {
             grid-area: 1 / 1 / 2 / 3;
             font-weight: 600;
@@ -52,40 +66,143 @@ body {
           .App .sidebar .status-box .status-box-text .status-box-text-item .property-desc {
             grid-area: 1 / 3 / 2 / 7; }
     .App .sidebar .menu-box {
-      grid-area: 3/1/10/3;
+      grid-area: 8/1/25/5;
       display: flex;
-      margin-top: -80px;
-      padding-bottom: 80px;
       height: 100%;
+      padding-top: 10px;
       flex-direction: column;
       background: #292929;
       font-weight: bold;
-      font-family: 'Open Sans', arial, sans-serif; }
+      font-family: "Open Sans", arial, sans-serif;
+      box-shadow: -4px 6px 4px 5px black; }
       .App .sidebar .menu-box .menu-box-panel {
+        display: grid;
+        grid-template-columns: repeat(40, 1fr);
+        grid-template-rows: repeat(40, 1fr);
         background: #191919;
         position: absolute;
         box-sizing: border-box;
-        padding: 50px;
         -webkit-transition: all 0.4s ease-in-out;
+        box-shadow: 2px 5px 7px -3px #202020;
         transition: all 0.4s ease-in-out;
-        width: 1156px;
-        height: 715px;
+        width: 1000px;
+        height: 600px;
         z-index: 2;
         -webkit-transform: translate(280px, -400px);
-        transform: translate(300px, -100px);
-        display: flex;
-        flex-direction: column; }
-        .App .sidebar .menu-box .menu-box-panel .transaction-title {
-          font-size: 3rem;
-          color: white; }
-        .App .sidebar .menu-box .menu-box-panel .transaction-map {
+        transform: translate(300px, -100px); }
+        .App .sidebar .menu-box .menu-box-panel .menu-box-panel-head {
+          grid-area: 2/2/11/40;
+          display: grid;
+          grid-template-columns: repeat(20, 1fr);
+          grid-template-rows: repeat(10, 1fr);
+          /* height: 100px; */ }
+          .App .sidebar .menu-box .menu-box-panel .menu-box-panel-head .transaction-title {
+            grid-area: 1 / 1 / 5 / 6;
+            font-size: 4rem;
+            text-transform: uppercase;
+            color: white; }
+          .App .sidebar .menu-box .menu-box-panel .menu-box-panel-head .make-transaction-button {
+            grid-area: 6 / 1 / 11 / 8;
+            background: white;
+            height: 50px;
+            width: 200px;
+            margin: 10px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            text-transform: uppercase;
+            color: white;
+            font-family: sans-serif;
+            border: none;
+            position: relative; }
+          .App .sidebar .menu-box .menu-box-panel .menu-box-panel-head .make-transaction-button::before {
+            transition: all 0.85s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            content: "";
+            width: 10%;
+            height: 100%;
+            background: black;
+            position: absolute;
+            top: 0;
+            left: 0; }
+          .App .sidebar .menu-box .menu-box-panel .menu-box-panel-head .make-transaction-button .make-transaction-button-text {
+            color: white;
+            mix-blend-mode: difference; }
+          .App .sidebar .menu-box .menu-box-panel .menu-box-panel-head .make-transaction-button:hover::before {
+            background: black;
+            width: 100%; }
+          .App .sidebar .menu-box .menu-box-panel .menu-box-panel-head .transaction-details {
+            grid-area: 2/13/7/19;
+            color: white; }
+            .App .sidebar .menu-box .menu-box-panel .menu-box-panel-head .transaction-details .transaction-details-item {
+              display: grid;
+              grid-template-columns: repeat(10, 1fr); }
+            .App .sidebar .menu-box .menu-box-panel .menu-box-panel-head .transaction-details .property {
+              grid-area: 1/1/2/10;
+              text-transform: uppercase;
+              font-weight: bold; }
+            .App .sidebar .menu-box .menu-box-panel .menu-box-panel-head .transaction-details .property-info {
+              grid-area: 1/6/1/11; }
+        .App .sidebar .menu-box .menu-box-panel .transaction-empty-map {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          grid-area: 11/2/39/40;
           background: white;
-          height: 85%;
-          width: 100%; }
+          /* height: 85%; */
+          width: 100%;
+          overflow-y: scroll; }
+        .App .sidebar .menu-box .menu-box-panel .transaction-map {
+          grid-area: 11/2/39/40;
+          background: white;
+          /* height: 85%; */
+          width: 100%;
+          overflow-y: scroll; }
+          .App .sidebar .menu-box .menu-box-panel .transaction-map .transaction-map-block {
+            background: #292929;
+            display: grid;
+            color: white;
+            box-shadow: 5px 2px 3px 1px grey;
+            height: 100px;
+            grid-template-columns: repeat(40, 1fr);
+            grid-template-rows: repeat(10, 1fr); }
+            .App .sidebar .menu-box .menu-box-panel .transaction-map .transaction-map-block .transaction-map-hash {
+              grid-area: 1/2/11/24;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              font-size: 0.7rem; }
+            .App .sidebar .menu-box .menu-box-panel .transaction-map .transaction-map-block .transaction-map-hash img {
+              grid-area: 1/1/1/1;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              font-size: 0.7rem;
+              height: 50px; }
+            .App .sidebar .menu-box .menu-box-panel .transaction-map .transaction-map-block .transaction-map-blocknumber {
+              grid-area: 2/25/10/31;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              font-size: 2rem; }
+            .App .sidebar .menu-box .menu-box-panel .transaction-map .transaction-map-block .transaction-map-gas {
+              grid-area: 1/33/11/40;
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              font-size: 1.5rem; }
+          .App .sidebar .menu-box .menu-box-panel .transaction-map .transaction-map-block div {
+            margin-right: 15px; }
+          .App .sidebar .menu-box .menu-box-panel .transaction-map .transaction-map-block img {
+            height: 50px; }
         .App .sidebar .menu-box .menu-box-panel .transaction-close-button {
           height: 50px;
           width: 50px;
-          background: goldenrod; }
+          filter: invert(1);
+          grid-area: 1 / 20 / 5 / 21;
+          cursor: pointer; }
+        .App .sidebar .menu-box .menu-box-panel .transaction-close-button img {
+          height: 100%; }
       .App .sidebar .menu-box .menu-box-item {
         color: #fff;
         text-transform: uppercase;
@@ -98,7 +215,7 @@ body {
       .App .sidebar .menu-box .menu-box-item:after {
         background: none repeat scroll 0 0 transparent;
         bottom: 0;
-        content: '';
+        content: "";
         display: block;
         height: 2px;
         left: 50%;
@@ -117,7 +234,7 @@ body {
     grid-area: 2 / 6 / 4 / 19;
     display: grid;
     grid-template-columns: repeat(8, 1fr);
-    font-family: 'Ubuntu', sans-serif; }
+    font-family: "Ubuntu", sans-serif; }
     .App .navbar .navbar-welcome {
       grid-area: 1 / 1 / 3 / 2; }
     .App .navbar .navbar-title {
@@ -136,7 +253,7 @@ body {
     justify-content: space-between;
     flex-direction: column;
     grid-area: 6 / 6 / 20 / 19;
-    font-family: 'Ubuntu', sans-serif;
+    font-family: "Ubuntu", sans-serif;
     width: 100%;
     height: 100%;
     position: relative; }
@@ -166,7 +283,8 @@ body {
       width: 20px;
       height: 20px;
       border-radius: 10px;
-      background: yellowgreen; }
+      background: yellowgreen;
+      animation: statusPulse 5s infinite ease-in-out; }
     .App .panel .hub-info .hub-info-item {
       display: grid;
       font-size: 0.6rem;
@@ -204,7 +322,7 @@ body {
         border-radius: 5px; }
       .App .panel .card .card-info {
         flex: 20% 1;
-        font-family: 'Ubuntu', sans-serif;
+        font-family: "Ubuntu", sans-serif;
         font-size: 0.8rem; }
         .App .panel .card .card-info .card-info-item {
           display: grid;
@@ -217,7 +335,7 @@ body {
             grid-area: 1 / 10 / 2 / 21; }
     .App .panel .card-full {
       position: absolute;
-      font-family: 'Open Sans', sans-serif;
+      font-family: "Open Sans", sans-serif;
       transform-origin: center;
       background: floralwhite;
       width: 1040px;
@@ -324,7 +442,7 @@ body {
             height: 150px; }
     .App .panel .card-full:before,
     .App .panel .card-full:after {
-      content: '';
+      content: "";
       position: absolute;
       z-index: -1;
       box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
@@ -380,5 +498,8 @@ body {
     transform: scale(1); }
   100% {
     transform: scale(0); } }
+@keyframes statusPulse {
+  50% {
+    background: limegreen; } }
 
 /*# sourceMappingURL=main.css.map */
